@@ -1,1 +1,2 @@
 mysql/datadir/*
+!mysql/datadir/.gitignore
