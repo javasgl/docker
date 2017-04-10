@@ -10,7 +10,9 @@ services:
     volumes:
       - './go/gotest:/go/src/gotest'
     command: bee run
-    tty: true  
+    links:
+      - mysql
+    # tty: true  
   mysql:
     build:
       context: ./mysql
