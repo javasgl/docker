@@ -1,18 +1,30 @@
 version: '3'
 services: 
-  go: 
+  gotest: 
     build:  
-     context: ./go
+     context: ./gotest
      args:
       - workdir=/go/src/gotest
     ports:
      - '8181:8181'   
     volumes:
-      - './go/gotest:/go/src/gotest'
-    command: bee run
+      - './gotest/gotest:/go/src/gotest'
+    # command: bee run
     links:
       - mysql
-    # tty: true  
+    # tty: true 
+  webcron:
+    build:
+      context: ./webcron
+      args:
+        - workdir=/go/src/webcron
+    ports:
+      - '8000:8000'     
+    volumes:
+      - './webcron/webcron:/go/src/webcron'  
+    command: bee run
+    links:
+      - mysql  
   mysql:
     build:
       context: ./mysql
